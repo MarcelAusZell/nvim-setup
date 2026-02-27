@@ -83,7 +83,7 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.autochdir = false
 vim.opt.iskeyword:append("-")
 vim.opt.path:append("**")
-vim.opt.selection = "exclusive"
+vim.opt.selection = "inclusive"
 vim.opt.mouse = "a"
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.modifiable = true
@@ -91,7 +91,7 @@ vim.opt.encoding = "utf-8"
 
 -- Cursor
 vim.opt.guicursor =
-  "n-v-c:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+"n-v-c:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:ver25-blinkwait175-blinkoff150-blinkon175"
 
 -- Folding
 vim.opt.foldmethod = "expr"
