@@ -1,3 +1,15 @@
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
+  },
+})
 -- ============================================================================
 -- THEME & TRANSPARENCY
 -- ============================================================================
@@ -443,6 +455,32 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 
 vim.lsp.enable("pyright")
+-- Autocomplete setup
+local cmp = require("cmp")
+
+cmp.setup({
+  completion = {
+    autocomplete = { cmp.TriggerEvent.TextChanged },
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+  }),
+  sources = {
+    { name = "nvim_lsp" },
+  },
+})
+
+local caps = vim.lsp.protocol.make_client_capabilities()
+caps = require("cmp_nvim_lsp").default_capabilities(caps)
+
+vim.lsp.config("pyright", { capabilities = caps })
+vim.lsp.enable("pyright")
+
+vim.lsp.config("clangd", { capabilities = caps })
+vim.lsp.enable("clangd")
+
 setup_lsp()
 
 -- ============================================================================
