@@ -442,6 +442,7 @@ vim.keymap.set("n", "nd", vim.diagnostic.goto_next, { desc = "Next diagnostic" }
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic list" })
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 
+vim.lsp.enable("pyright")
 setup_lsp()
 
 -- ============================================================================
